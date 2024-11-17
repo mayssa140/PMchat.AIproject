@@ -89,15 +89,11 @@ def save_conversation_to_db(user_inquiry,paradigm, assistant_message1, assistant
 
 
 # Dashboard function
-def dashboard(username):
-    st.title(f"Welcome , {username}!")
-    # Logout Button
-    if st.button("Logout"):
-        # Clear session state and redirect to login page
-        st.session_state.clear()  # Clear all session state
-        st.rerun()
+
+
+
 def make_api_call(prompt) -> str:
-    api_key = "sk-proj-XCNHA2CuMuWek7AeD2iaT3BlbkFJVwM87YrZeH8G4vu7atzJ"
+    api_key = "xxxxxxx"
 
     headers = {
         "Content-Type": "application/json",
@@ -345,7 +341,12 @@ st.markdown("""
            object-fit: cover;    /* Ensure the image is not distorted */
            margin: -30px 50px 100px 30px;  /* top right bottom left */
            box-shadow: 5px 4px 15px rgb(115, 147, 179); /* Blue shadow */
+.top-right-button {
+            position: absolute;
+            top: 500px;
+            left: 300px;
 
+        }
 
        }
 
@@ -355,6 +356,22 @@ st.markdown("""
 # Streamlit UI
 import datetime
 
+
+
+
+def dashboard(username):
+    # Create a layout with more space for the button on the right
+    col1, col2, col3, col4, col5 = st.columns([1, 7, 1, 2,2])  # Adjust ratios for better placement
+
+    # Add the Logout button in the far-right column
+    with col5:
+        if st.button("Logout"):
+            st.session_state.clear()  # Clear all session state
+            st.rerun()  # Redirect to the login page
+
+    # Welcome message in the second column
+    with col2:
+        st.title(f"Welcome, {username}!")
 
 def get_and_display_conversations():
     if 'user_id' in st.session_state:
